@@ -1,0 +1,32 @@
+alias: Update Virtual Light State from Illuminance
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - sensor.philips_sml001_illuminance
+conditions:
+  - condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: numeric_state
+            entity_id: sensor.philips_sml001_illuminance
+            above: 39
+          - condition: state
+            entity_id: input_boolean.virtual_light_state
+            state: "off"
+      - condition: and
+        conditions:
+          - condition: numeric_state
+            entity_id: sensor.philips_sml001_illuminance
+            below: 40
+          - condition: state
+            entity_id: input_boolean.virtual_light_state
+            state: "on"
+actions:
+  - action: >-
+      input_boolean.turn_{{ 'on' if states('sensor.philips_sml001_illuminance')
+      | float(0) > 39 else 'off' }}
+    target:
+      entity_id: input_boolean.virtual_light_state
+mode: single
