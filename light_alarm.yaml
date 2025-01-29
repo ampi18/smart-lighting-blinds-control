@@ -1,0 +1,14 @@
+alias: Light on when alarm rings
+description: ""
+mode: single
+triggers:
+  - value_template: >-
+      {% set alarm_time = as_timestamp(states('sensor.echo_spot_next_alarm')) %} 
+      {% set current_time = now().timestamp() %} 
+      {% set pre_time = 10 %} 
+      {{ current_time >= alarm_time - pre_time }}
+actions:
+  - type: turn_on
+    device_id: b0c49981eaf04313ec20c21fc5367e80
+    entity_id: b8e6541a76267aa0e79ec824750be84f
+    domain: switch
