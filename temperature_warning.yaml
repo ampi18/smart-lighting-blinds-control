@@ -1,0 +1,21 @@
+alias: Shelly Küche Temperatur Warnung
+description: ""
+triggers:
+  - type: temperature
+    device_id: 5d6d15177a601a0a4944f0f839324063
+    entity_id: 1969b87e91c419cb800fd17d30670276
+    domain: sensor
+    trigger: device
+    above: 70
+conditions: []
+actions:
+  - action: notify.mobile_app_amelies_pixel_8
+    metadata: {}
+    data:
+      message: >-
+        Achtung! 
+        Temperatur von Shelly Küche ist {{
+        states('sensor.shelly1minig3_cc8da244fdec_switch_0_device_temperature')
+        }}°C
+      title: "Warnung: Temperatur von Shelly Gerät"
+mode: single
