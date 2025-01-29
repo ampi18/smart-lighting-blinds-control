@@ -1,0 +1,13 @@
+alias: Close blinds in office before sunset
+description: ""
+triggers:
+  - trigger: sun
+    event: sunset
+    offset: "-00:30:00"
+conditions: []
+actions:
+  - device_id: 08a276d7a051f5714b4cff0ab0f234d4
+    domain: cover
+    entity_id: ff49b8898f6a0da618e9416ce6d3cade
+    type: close
+mode: single
