@@ -1,0 +1,26 @@
+alias: Light Automation Office
+description: ""
+use_blueprint:
+  path: Blackshome/sensor-light.yaml
+  input:
+    motion_trigger:
+      - binary_sensor.motion_sensor_office_motion
+    light_switch:
+      entity_id: switch.light_switch_office_switch_0
+    motion_bypass_lights_off: []
+    include_bypass:
+      - bypass_enabled_stop
+    motion_bypass_lights_on: []
+    motion_bypass_lights_stop:
+      - input_boolean.buro_licht_automation_bypass
+    include_bypass_auto_off: []
+    bypass_auto_off_delay: 5
+    ambient_light_options: ambient_light_option_disabled
+    include_ambient: ambient_disabled
+    ambient_light_sensor: sensor.hue_motion_sensor_1_illuminance
+    ambient_light_high_value: 80
+    include_time: time_disabled
+    after_time: "00:00:00"
+    before_time: "00:00:00"
+    ambient_light_value: 20
+    include_sun: sun_enabled
